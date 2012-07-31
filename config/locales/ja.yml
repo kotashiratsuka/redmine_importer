@@ -1,6 +1,6 @@
 ja:
   label_import: "インポート"
-  label_issue_importer: "チケットインポーター"
+  label_issue_importer: "チケットのインポート"
   label_upload_notice: "インポートするCSVファイルを選択してください。ファイルの最初にはヘッダ行が必要です。"
   label_upload_format: "ファイル形式の設定"
   label_upload_encoding: "文字コードエンコーディング:"
