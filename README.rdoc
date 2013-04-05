@@ -1,7 +1,7 @@
-= importer
+= Redmine Issues Importer
 
-This plugin is based on https://github.com/rchady/redmine_importer/ and
-https://github.com/juno/redmine_importer. 
-Customized for Japanese environment.
+This plugin is based on what follows.
 
+* https://github.com/rchady/redmine_importer
+* https://github.com/juno/redmine_importer
 
