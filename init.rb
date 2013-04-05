@@ -4,7 +4,7 @@ Redmine::Plugin.register :redmine_importer do
   name 'Redmine Issue Importer plugin'
   author 'Martin Liu'
   description 'Issue import plugin for Redmine.'
-  version '0.4.0'
+  version '0.4.1'
   requires_redmine :version_or_higher => '2.0.0'
   url 'https://github.com/ichizok/redmine_importer'
 
