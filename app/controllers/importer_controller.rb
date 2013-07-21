@@ -121,6 +121,10 @@ class ImporterController < ApplicationController
         author = User.find_by_login(row[attrs_map["author"]])
         priority = Enumeration.find_by_name(row[attrs_map["priority"]])
         category_name = row[attrs_map["category"]]
+        if (!category) && category_name && category_name.length > 0 && add_categories
+          category = project.issue_categories.build(:name => category_name)
+          category.save
+        end
         category = IssueCategory.find_by_name(category_name)
         assigned_to = User.find_by_login(row[attrs_map["assigned_to"]])
 
@@ -197,10 +201,6 @@ class ImporterController < ApplicationController
         issue.parent_issue_id = row[attrs_map["parent_issue"]] || issue.parent_issue_id
         issue.description = row[attrs_map["description"]] || issue.description
         issue.category_id = category ? category.id : issue.category_id
-        if (!category) && category_name && category_name.length > 0 && add_categories
-          category = project.issue_categories.build(:name => category_name)
-          category.save
-        end
         issue.start_date = row[attrs_map["start_date"]] || issue.start_date
         issue.due_date = row[attrs_map["due_date"]] || issue.due_date
         issue.assigned_to_id = assigned_to && assigned_to.class.name != "AnonymousUser"? assigned_to.id : issue.assigned_to_id
