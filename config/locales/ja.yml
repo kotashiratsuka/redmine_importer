@@ -19,6 +19,7 @@ ja:
   label_update_other_project: "他プロジェクトのチケット更新を許可する"
   label_ignore_non_exist: "存在しないチケットの指定を無視する"
   label_rule_name: "ルール名を入力"
+  label_importer_add_categories: "新しいカテゴリなら自動的に追加"
 
   label_import_result: "インポート結果"
   label_result_notice: "%d 件のチケットを処理し、%d 件のチケットをインポートしました。"

@@ -19,6 +19,7 @@ en:
   label_update_other_project: "Allow update issues of other projects"
   label_ignore_non_exist: "Ignore none exist issues"
   label_rule_name: "Input rule name"
+  label_importer_add_categories: "Auto-add categories"
 
   label_import_result: "Import Result"
   label_result_notice: "%d issues processed. %d issues success imported."

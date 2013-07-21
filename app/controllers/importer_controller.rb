@@ -95,6 +95,7 @@ class ImporterController < ApplicationController
       h[k.dup.force_encoding('UTF-8')] = v; h
     end
     unique_attr = fields_map[unique_field]
+    add_categories = params[:add_categories]
 
     # check params
     if update_issue && unique_attr.nil?
@@ -119,7 +120,8 @@ class ImporterController < ApplicationController
         status = IssueStatus.find_by_name(row[attrs_map["status"]])
         author = User.find_by_login(row[attrs_map["author"]])
         priority = Enumeration.find_by_name(row[attrs_map["priority"]])
-        category = IssueCategory.find_by_name(row[attrs_map["category"]])
+        category_name = row[attrs_map["category"]]
+        category = IssueCategory.find_by_name(category_name)
         assigned_to = User.find_by_login(row[attrs_map["assigned_to"]])
 
         # new issue or find exists one
@@ -180,6 +182,9 @@ class ImporterController < ApplicationController
 
         # project affect
         project = Project.find_by_id(issue.project_id) if project.nil?
+        if !project
+          project = @project
+        end
 
         @affect_projects_issues[project.name] += 1
 
@@ -192,6 +197,10 @@ class ImporterController < ApplicationController
         issue.parent_issue_id = row[attrs_map["parent_issue"]] || issue.parent_issue_id
         issue.description = row[attrs_map["description"]] || issue.description
         issue.category_id = category ? category.id : issue.category_id
+        if (!category) && category_name && category_name.length > 0 && add_categories
+          category = project.issue_categories.build(:name => category_name)
+          category.save
+        end
         issue.start_date = row[attrs_map["start_date"]] || issue.start_date
         issue.due_date = row[attrs_map["due_date"]] || issue.due_date
         issue.assigned_to_id = assigned_to && assigned_to.class.name != "AnonymousUser"? assigned_to.id : issue.assigned_to_id

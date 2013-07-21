@@ -29,6 +29,11 @@
       </td></tr>
 
       <tr><td>
+          <%= check_box_tag "add_categories", true, false %>
+          <%= label_tag "add_categories", l(:label_importer_add_categories) %> 
+      </td></tr>
+
+      <tr><td>
           <%= check_box_tag "update_issue", true, false %>
           <%= label_tag 'update_issue', l(:label_update_issue) %>
       </td></tr>
