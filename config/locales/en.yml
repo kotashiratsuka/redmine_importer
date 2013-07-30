@@ -38,3 +38,7 @@ en:
 
   button_submit: "Submit"
   button_save_rules_and_submit: "Save match rules and submit"
+
+  label_file_cant_read: "Failed to read file"
+  label_file_missiong: "Missing imported file"
+  label_nothing_unique: "Unique field hasn't match an issue's field"

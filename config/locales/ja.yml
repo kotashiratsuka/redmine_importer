@@ -38,4 +38,6 @@ ja:
   label_header_blank: "空白のヘッダがあります。データを確認して下さい。"
   label_file_undefined: "ファイルが指定されていません。"
 
-
+  label_file_missiong: "ファイルが見つかりません"
+  label_file_cant_read: "ファイルを読み込めませんでした"
+  label_nothing_unique: "一意のフィールドがありません"

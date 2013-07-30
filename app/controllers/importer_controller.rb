@@ -49,7 +49,7 @@ class ImporterController < ApplicationController
         @headers = csv.headers
       end # do
     rescue => err
-      redirect_to({:action => "index", :project_id => params[:project_id]}, :notice => "Failed to read file (#{err.message})")
+      redirect_to({:action => "index", :project_id => params[:project_id]}, :notice => l(:label_file_cant_read) + " (#{err.message})")
       return
     end
 
@@ -81,7 +81,7 @@ class ImporterController < ApplicationController
     encoding = session[:importer_encoding]
 
     if !File.exist?(tmpfilepath)
-      redirect_to({:action => "index", :project_id => params[:project_id]}, :notice => "Missing imported file")
+      redirect_to({:action => "index", :project_id => params[:project_id]}, :notice => l(:label_file_missiong))
       return
     end
 
@@ -99,7 +99,7 @@ class ImporterController < ApplicationController
 
     # check params
     if update_issue && unique_attr.nil?
-      redirect_to({:action => "index", :project_id => params[:project_id]}, :notice => "Unique field hasn't match an issue's field")
+      redirect_to({:action => "index", :project_id => params[:project_id]}, :notice => l(:label_nothing_unique))
       return
     end
 
