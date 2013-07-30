@@ -28,6 +28,7 @@
           <%= select_tag "default_tracker", options_from_collection_for_select(@project.trackers, 'id', 'name') %>
       </td></tr>
 
+      <!--
       <tr><td>
           <%= check_box_tag "add_categories", true, false %>
           <%= label_tag "add_categories", l(:label_importer_add_categories) %> 
@@ -57,6 +58,7 @@
           <%= check_box_tag "ignore_non_exist", true, false, {:disabled => true} %>
           <%= label_tag 'ignore_non_exist', l(:label_ignore_non_exist) %>
       </td></tr>
+      -->
 
     </table>
   </fieldset>

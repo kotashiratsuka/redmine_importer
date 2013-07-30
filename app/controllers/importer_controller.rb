@@ -116,16 +116,19 @@ class ImporterController < ApplicationController
       csv.each do |row|
 
         project = Project.find_by_name(row[attrs_map["project"]])
+        if !project
+          project = @project
+        end
         tracker = Tracker.find_by_name(row[attrs_map["tracker"]])
         status = IssueStatus.find_by_name(row[attrs_map["status"]])
         author = User.find_by_login(row[attrs_map["author"]])
         priority = Enumeration.find_by_name(row[attrs_map["priority"]])
         category_name = row[attrs_map["category"]]
+        category = IssueCategory.find_by_name(category_name)
         if (!category) && category_name && category_name.length > 0 && add_categories
           category = project.issue_categories.build(:name => category_name)
           category.save
         end
-        category = IssueCategory.find_by_name(category_name)
         assigned_to = User.find_by_login(row[attrs_map["assigned_to"]])
 
         # new issue or find exists one
@@ -186,9 +189,6 @@ class ImporterController < ApplicationController
 
         # project affect
         project = Project.find_by_id(issue.project_id) if project.nil?
-        if !project
-          project = @project
-        end
 
         @affect_projects_issues[project.name] += 1
 
