@@ -8,7 +8,7 @@
   <fieldset class="box tabular"><legend><%= l(:label_upload_format) %></legend>
 
     <p><%= label_tag('encoding', l(:label_upload_encoding)) %>
-    <%= select_tag 'encoding', options_for_select([nil] + Setting::ENCODINGS) %></p>
+    <%= select_tag 'encoding', options_for_select([nil] + Setting::ENCODINGS, :selected => 'CP932') %></p>
 
     <p><%= label_tag('splitter', l(:label_upload_splitter)) %>
     <%= text_field_tag 'splitter', ',', {:size => 3, :maxlength => 1} %></p>

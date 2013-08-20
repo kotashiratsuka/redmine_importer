@@ -201,8 +201,8 @@ class ImporterController < ApplicationController
         issue.parent_issue_id = row[attrs_map["parent_issue"]] || issue.parent_issue_id
         issue.description = row[attrs_map["description"]] || issue.description
         issue.category_id = category ? category.id : issue.category_id
-        issue.start_date = row[attrs_map["start_date"]] || issue.start_date
-        issue.due_date = row[attrs_map["due_date"]] || issue.due_date
+        issue.start_date = row[attrs_map["start_date"]].blank? ? issue.start_date : DateTime.parse(row[attrs_map["start_date"]])
+        issue.due_date = row[attrs_map["due_date"]].blank? ? issue.due_date : DateTime.parse(row[attrs_map["due_date"]])
         issue.assigned_to_id = assigned_to && assigned_to.class.name != "AnonymousUser"? assigned_to.id : issue.assigned_to_id
         issue.fixed_version_id = fixed_version ? fixed_version.id : issue.fixed_version_id
         issue.done_ratio = row[attrs_map["done_ratio"]] || issue.done_ratio
